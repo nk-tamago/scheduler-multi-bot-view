@@ -1,5 +1,4 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
     "tasks": {
@@ -16,7 +15,7 @@
               "properties": {
                 "type": {
                   "type": "string",
-                  "enum": ["slack", "debug"]
+                  "enum": ["slack", "debug", "teams"]
                 },
                 "options": {
                   "type": "object",
@@ -48,9 +47,18 @@
                         }
                       },
                       "required": ["userName"]
+                    },
+                    "teams": {
+                      "type": "object",
+                      "properties": {
+                        "webhook": {
+                          "type": "string",
+                          "format": "uri"
+                        }
+                      },
+                      "required": ["webhook"]
                     }
-                  },
-                  "required": ["slack", "debug"]
+                  }
                 }
               },
               "required": ["type", "options"]
@@ -93,9 +101,15 @@
                     "items": {
                       "type": "string"
                     }
+                  },
+                  "overrideObjects": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
                   }
                 },
-                "required": ["mode", "cron", "texts"]
+                "required": ["mode", "cron"]
               }
             }
           },

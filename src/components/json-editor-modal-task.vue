@@ -105,6 +105,7 @@ export default {
         .catch((e) => {
           // errを出す
           console.log(e)
+          throw e
         })
       this.taskNames = res.data.map((item) => {
         return item.name
@@ -143,12 +144,14 @@ export default {
             .catch((e) => {
               // errを出す
               console.log(e)
+              throw e
             })
         } else {
           return Methods.addTask(post)
             .catch((e) => {
               // errを出す
               console.log(e)
+              throw e
             })
         }
       }
@@ -174,7 +177,8 @@ export default {
           .catch((error) => {
             errorMessage = error.message
             if (error.response) {
-              errorMessage += `<<br>${error.response.data}`
+              console.log(error.response)
+              errorMessage += `<<br>${JSON.stringify(error.response.data)}`
             }
           })
       }

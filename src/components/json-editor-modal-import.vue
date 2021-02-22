@@ -80,6 +80,7 @@ export default {
           .catch((e) => {
             // errを出す
             console.log(e)
+            throw e
           })
       }
 
@@ -108,7 +109,7 @@ export default {
           .catch((error) => {
             errorMessage = error.message
             if (error.response) {
-              errorMessage += `<<br>${error.response.data}`
+              errorMessage += `<<br>${JSON.stringify(error.response.data)}`
             }
           })
       }
